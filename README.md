@@ -19,7 +19,7 @@ Gitee 是 OSCHINA 推出的基于 Git 的代码托管平台（同时支持 SVN�
 
 1.  git pull origin master --allow-unrelated-histories 【允许不相关历史提交，并强制合并】
     用于pull，或者报错时的提示，用于解决冲突，再修改冲突，再提交
-2.  xxxx
+2.  test-demo1
 3.  xxxx
 
 #### 参与贡献
