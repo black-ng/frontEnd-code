@@ -41,6 +41,17 @@
     .jpgdemo1:hover{
       transform: rotate(360deg);
     }
+    /* 渐变色 */
+    span{
+      width: 200px;
+      height: 200px;
+      background-image:-webkit-linear-gradient(bottom,red,#fd8403,yellow);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      /* background: -webkit-linear-gradient(...) 为文本元素提供渐变背景。
+      webkit-text-fill-color: transparent 使用透明颜色填充文本。 
+      webkit-background-clip: text 用文本剪辑背景，用渐变背景作为颜色填充文本。 */
+    }
 
     </style>
   </head>
@@ -68,5 +79,9 @@
     <div class="trans">
     </div>
     <img src="../../../BaiduNetdiskDownload/前端开发/代码等多个文件/课件/08_CSS3旋转动画/素材/pic.jpg" alt="" class="jpgdemo1">
+    <div>
+      <span>123</span>
+    </div>
+    
   </body>
 </html>
