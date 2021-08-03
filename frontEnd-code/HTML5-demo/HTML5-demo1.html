@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="utf-8">
     <title>demo1</title>
-    <style type="text/css">
-    /* 指定元素选择器 */
+</head>
+<style type="text/css">
+  /* 指定元素选择器 */
     /* child和og-type的区别
     nth-child`  选择父元素里面的第几个子元素，不管是第几个类型
     nth-of-type`  选择指定类型的元素 */
@@ -79,22 +80,9 @@
       to{
         background-position: 0 100%;
       }
-    /* 渐变色 */
-    span{
-      width: 200px;
-      height: 200px;
-      background-image:-webkit-linear-gradient(bottom,red,#fd8403,yellow);
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-      /* background: -webkit-linear-gradient(...) 为文本元素提供渐变背景。
-      webkit-text-fill-color: transparent 使用透明颜色填充文本。 
-      webkit-background-clip: text 用文本剪辑背景，用渐变背景作为颜色填充文本。 */
-    }
-
-    
-    </style>
-  </head>
-  <body>
+      }
+</style>
+<body>
     <form action="">
       邮箱：<input type="email">
       日期：<input type="date">
@@ -127,7 +115,6 @@
     </div>
     <div>
       <span>123</span>
-    </div>
-    
-  </body>
+    </div>  
+</body>
 </html>
