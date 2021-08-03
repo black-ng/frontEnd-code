@@ -20,7 +20,7 @@
     .demo2 ::after{
       content: "你好";
     }
-    /* 联系点：transition  延时动画效果 */
+    /* 练习点：transition  延时动画效果 */
     .trans{
       width: 100px;
       height: 100px;
@@ -41,7 +41,47 @@
     .jpgdemo1:hover{
       transform: rotate(360deg);
     }
+    @keyframes move {
+      form{width: 0;}
+      to{width: 1000px;}
+    }
+    .annimation {
+      width: 0;
+      height: 100px;
+      background-color: red;
+      animation: move 4s forwards steps(10) ;
+    }
+    .yys{
+      height: 290px;
+      width: 150px;
+      background: url(../../../../BaiduNetdiskDownload/前端开发/代码等多个文件/课件/08_CSS3旋转动画/素材/index_z_71df05e.png) no-repeat  ;
+      position: relative;
+    }
+    .erweima{
+      width: 109px;
+      height: 125px;
+      margin: 0 auto;
+      background: url(../../../../BaiduNetdiskDownload/前端开发/代码等多个文件/课件/08_CSS3旋转动画/素材/57b280b496dee47507111c56NRN73rVj.png) no-repeat;
+      background-size: 100% ;
+      position: absolute;
+      left: 18px;
+      bottom: 12px;
+      
+    }
+    .gunzi{
+      width: 100%;
+      height: 115px;
+      background: url(../../../../BaiduNetdiskDownload/前端开发/代码等多个文件/课件/08_CSS3旋转动画/素材/line_dd0b705.png) no-repeat;
+      animation: boto 3s infinite alternate linear ;
+    }
+    @keyframes boto {
+      from{}
+      to{
+        background-position: 0 100%;
+      }
+    }
 
+    
     </style>
   </head>
   <body>
@@ -68,5 +108,12 @@
     <div class="trans">
     </div>
     <img src="../../../BaiduNetdiskDownload/前端开发/代码等多个文件/课件/08_CSS3旋转动画/素材/pic.jpg" alt="" class="jpgdemo1">
+    <div class="annimation">
+    </div>
+    <div class="yys">
+      <div class="erweima">
+        <div class="gunzi"></div>
+      </div>
+    </div>
   </body>
 </html>
