@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    function Sart(name,age,sex) {
+        this.name=name
+        this["age"]=age
+        this["sex"]=sex
+        this.sing = function (song) {
+            console.log(this.name+"正在唱:"+song)
+        }
+    }
+    let ldh;
+    ldh = new Sart("刘德华", 59, "男");
+    const zxy = new Sart('张学友', 44, '男');
+    zxy.sing('哈哈')
+    for (const zxyKey in zxy) {
+        console.log(zxyKey+":"+zxy[zxyKey])
+    }
+    for (const ldhKey in ldh) {
+        console.log(ldhKey+":"+ldh[ldhKey])
+    }
+</script>
+</body>
+</html>

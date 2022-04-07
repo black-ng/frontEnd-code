@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js函数</title>
+</head>
+<body>
+<script type="text/javascript">
+    function MaxNum(num1,num2,num3) {
+        var maxn=num1
+        maxn=num2>maxn?num2:maxn
+        maxn=num3>maxn?num3:maxn
+        return maxn
+    }
+
+    function isPrime(num) {
+        if (num<2){
+            return false
+        }
+        for (let i = 2; i < num; i++) {
+            if (num%i==0){
+                return false
+            }
+        }return true
+    }
+
+    function buebuleSort(arr) {
+        //  跑多少趟
+        for (let j = 0; j < arr.length-1; j++) {
+            //  比较大小
+            for (let i = 0; i < arr.length-1-j; i++) {
+                //交换
+                if (arr[i]>arr[i+1]){
+                    var temp=arr[i]
+                    arr[i]=arr[i+1]
+                    arr[i+1]=temp
+                }
+            }
+        }
+        return arr
+    }
+
+    function isleadYear(year) {
+        return year % 4 == 0 && year != 0 || year % 400 == 0;
+    }
+    function get_february_days(year) {
+        return isleadYear(year)?29:30
+    }
+
+    // 01-比较多个值的大小
+    console.log(MaxNum(130,20,5))
+    // 02-判断一个数是否为质数
+    console.log(isPrime(8))
+    // 03-冒泡排序，数组升序或者降序
+    console.log(buebuleSort([10,33,65,12,318,1,84563,1,2,3]))
+    // 04-函数调用
+    console.log(get_february_days(1600))
+
+</script>
+</body>
+</html>
