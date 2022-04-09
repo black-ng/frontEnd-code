@@ -24,6 +24,95 @@
     for (const ldhKey in ldh) {
         console.log(ldhKey+":"+ldh[ldhKey])
     }
+    //01-首尾互换
+    const arr = ["鹿晗", "王俊凯", "蔡徐坤", "彭于晏", "周杰伦", "刘德华", "赵本山"]
+    arr.push(arr[0])&&arr.unshift(arr.slice(-2)[0])&&arr.splice(1,1)&&arr.splice(arr.length-2,1)
+    console.log(arr)
+    //02-返回当前时间
+    function getDater(time) {
+        let now = new Date(time)
+        let year=now.getFullYear()
+        let month = now.getMonth()+1
+        month=month<10?'0'+month:month
+        let days=now.getDate()
+        days=days<10?'0'+days:days
+        let h = now.getHours()
+        h = h<10?'0'+h:h
+        let m = now.getMinutes()
+        m = m<10?'0'+m:m
+        let s = now.getSeconds()
+        s = s<10?'0'+s:s
+        return year+'-'+month+'-'+days+' '+h+':'+m+':'+s
+    }
+    console.log(getDater('2022-1-9'))
+    //03-数组去重
+    let arrNum = [1, 23, 1, 44, 44, 5, 5, 7, 8];
+    console.log(arrNum.indexOf(77))
+    function distientArr(arr) {
+        const newArr = [];
+        for (let arrKey in arr) {
+            if (newArr.indexOf(arr[arrKey])===-1){
+                newArr.push(arr[arrKey])
+            }
+        }
+        newArr.sort(function (a, b){return a-b})
+        return newArr
+    }
+    console.log(distientArr(arrNum))
+    //04-计算指定日期是今年的第几天
+    function getDayNum(mis) {
+        const now = new Date(mis)
+        let year = now.getFullYear(), firstDay = new Date(year.toString()), times = (now - firstDay) / 1000;
+        return Math.ceil(times / 60 / 60 / 24)+1
+    }
+    console.log(getDayNum('2021-2-16'))
+    //05-最大最小随机数
+    function getRandom(min,max) {
+        return Math.floor(Math.random()*(max-min+1))+min
+    }
+    function getRandomColor(){
+        let arr=[0,1,2,3,4,5,6,7,8,9,'A','B','C','D','E','F'],color='#'
+        for (let i = 0; i < 6; i++) {
+            color+=arr[getRandom(0,arr.length-1)]
+        }
+        return color
+    }
+    console.log(getRandomColor())
+    // 06-统计字符串中出现重复的次数
+    function getEqualStr(str,val) {
+        let index=str.indexOf(val,0),cont=0
+        while (index!==-1){
+            cont++
+            index=str.indexOf(val,index+1)
+        }
+        return cont
+    }
+    console.log(getEqualStr('hello heoolp ppzhao','h'))
+    //07-统计字符串中出现最多的字符
+    function getMaxStr(arr) {
+        let maxcount=0,maxstr
+        for (let arrKey in arr) {
+            let count=getEqualStr(arr,arr[arrKey])
+            if (count>maxcount){
+                maxcount=count
+                // let index=arr.indexOf(arr[arrKey])
+                // maxstr=arr.charAt(index)
+                maxstr=arr[arrKey]
+            }
+        }
+        return {maxcount,maxstr}
+    }
+    let maxstrarr= getMaxStr('aaa11122225551122ttttoooogfhhf')
+    console.log('出现最多字符：'+maxstrarr.maxstr+'\n'+'出现：'+maxstrarr.maxcount+'次')
+    //08-字符串替换值
+    function getReplaceChar(str,char,rechar) {
+        while (str.indexOf(char)!==-1){
+            str=str.replace(char,rechar)
+        }
+        return str
+    }
+    console.log(getReplaceChar('aabbbgghhhlll','h','p'))
+
 </script>
 </body>
 </html>
