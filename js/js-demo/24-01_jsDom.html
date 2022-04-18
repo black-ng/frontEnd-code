@@ -11,6 +11,16 @@
                 color: white;
                 background-color: #0099ff;
             }
+            img{
+                width: 200px;
+                height: 200px;
+                display: block;
+            }
+            #switch{
+                height: 200px;
+                width: 200px;
+                background-color: #333333;
+            }
         </style>
     </head>
     <body>
@@ -28,20 +38,25 @@
     <button id="now">显示当前时间</button>
     <div class="exx">某个时间</div>
     <p>123</p>
-    <div></div>
+    <div class="upstyle"></div>
     <p>
         文字
     <span>123
     </span>
     </p>
+    <img src="./../img/ldh.jpg" alt="刘德华" title="ldh">
+    <button id='ldh'>刘德华</button>
+    <button id='zxy'>张学友</button>
+    <div id="switch"></div>
+    <button id="on-off">开灯</button>
 
     <script type="text/javascript">
         let div=document.getElementById('box1')
         div.innerHTML='dsfds'
-        //获取一组标签
+        // 01获取一组标签
         let list=document.getElementsByTagName('li')
         console.log(list)
-        //鼠标事件
+        // 02鼠标事件
         let i=0,j=0,l=0
         const btn=document.getElementById('btn')
         btn.onclick=()=>{alert('hello word')}       //点击
@@ -62,11 +77,11 @@
         mouse.onmouseup=()=>{
             console.log('鼠标抬起')
         }
-        //焦点的获取和丢失
+        // 03焦点的获取和丢失
         const int=document.querySelector('input')
         int.onfocus=()=>{console.log('获取了焦点')}
         int.onblur=()=>{console.log('失去了焦点')}
-        //实例点击事件
+        // 04实例点击事件
         const btnnow=document.getElementById('now')
         const now=document.querySelectorAll('div')
         console.log(now)
@@ -88,9 +103,45 @@
             s = s<10?'0'+s:s
             return year+'-'+month+'-'+days+' '+h+':'+m+':'+s
         }
-        // innertex和innerhtml的区别
+        // 05innertex和innerhtml的区别
         const innerdiv=document.querySelectorAll('div')
         innerdiv[4].innerHTML='<strong>hell<strong>'  //如果换成text会显示字符串，只显示文本    html用的最多，原样输出（包括标签）
+        // 06更换图片
+        const ldh=document.getElementById('ldh')
+        const zxy=document.getElementById('zxy')
+        const img=document.querySelector('img')
+        ldh.onclick=()=>{
+            img.src='./../img/ldh.jpg'
+            img.title='ldh'
+        }
+        zxy.onclick=()=>{
+            img.src='./../img/zxy.jpg'
+            img.title='zxy'
+        }
+        // 07修改css样式
+        const divstyle=document.getElementsByClassName('upstyle')[0]
+        divstyle.onclick= function (){
+            //谁触发了事件，this就指向谁
+            console.log(this)
+            this.style.height='500px'
+            this.style.width='500px'
+            this.style.backgroundColor='black'
+        }
+        // 08开关灯
+        let buttons=true
+        derail=document.getElementById('on-off')
+        backcolor=document.getElementById('switch')
+        derail.onclick=function (){
+            buttons=!buttons
+            if (buttons){
+                backcolor.style.backgroundColor='#333333'
+                derail.innerHTML='开灯'
+            }
+            else {
+                backcolor.style.backgroundColor='beige'
+                derail.innerHTML='关灯'
+            }
+        }
 
     </script>
     </body>
