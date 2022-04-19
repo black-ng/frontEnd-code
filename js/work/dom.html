@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #uname{
+            border: 1px solid #d9d9d9;
+            color: #aaa;
+            outline: none;
+        }
+        #ad{
+            display: block;
+            width: 100%;
+            height: 80px;
+            background:url("./../img/luzhou.jpg") no-repeat 50% 0;
+        }
+        #close{
+            cursor: pointer;
+            position: absolute;
+            right: 23%;
+            top: 50px;
+            background:url("./../img/close.jpg");
+            width: 20px;
+            height: 20px;
+        }
+        .box{
+            width: 100px;
+            height: 50px;
+            margin: auto;
+            padding-top: 20px;
+        }
+        #weibo{
+            position: relative;
+            line-height: 50px;
+            text-align: center;
+            color: orange;
+        }
+        i{
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: url("./../img/icon.png")no-repeat 5px -977px;
+            top: 25px;
+            right: 10px;
+        }
+        #list{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: none;
+        }
+        li{
+            border: 1px solid orange;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<label>
+    <input type="text" class="input_text" id="uname" value="邮箱/ID/手机号">
+</label>
+
+<div id="luzhou" style="...">
+    <a href="" id="ad"></a>
+    <i id="close"></i>
+</div>
+
+<div class="box">
+    <div id="weibo">
+        <span>微博</span>
+        <i></i>
+    </div>
+    <ul id="list">
+        <li>私信</li>
+        <li>评论</li>
+        <li>@我</li>
+    </ul>
+</div>
+
+<script>
+    //01 输入框失焦等
+    let intput1=document.getElementById('uname')
+    intput1.onfocus=function (){
+        this.value=''
+        this.style.border='1px solid red'
+    }
+    intput1.onblur=function (){
+        if (this.value===''){
+            this.value='邮箱/ID/手机号'
+            this.style.border='1px solid #d9d9d9'
+        }
+    }
+    //02 关闭广告
+    let close1=document.getElementById('close')
+    let ad1=document.getElementById('luzhou')
+    close1.onclick=()=>{
+        ad1.style.display='none'
+    }
+    //03 hover 下拉框显示
+    let mousover=document.getElementById('weibo')
+    let list1=document.getElementById('list')
+    mousover.onmouseover=function (){
+        this.style.backgroundColor ='#aaaaaa'
+        list1.style.display='block'
+    }
+    mousover.onmouseout=function (){
+        this.style.backgroundColor =''
+        list1.style.display='none'
+    }
+
+</script>
+</body>
+</html>
