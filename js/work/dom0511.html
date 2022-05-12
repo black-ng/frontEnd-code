@@ -62,7 +62,7 @@
     let pwd1=document.querySelectorAll('input')[1],img1=document.querySelector('.icon-man')
     pwd1.onblur=function (){
         if (this.value.length>16||this.value.length<6){
-            img1.className="icon-man wrong"
+            img1.className="icon-man wrong"//这里的顺序的不关，跟style的顺序有关
             img1.innerHTML='密码长度不正确'
         }else {
             img1.className='icon-man right'
