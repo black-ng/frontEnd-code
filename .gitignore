@@ -5,3 +5,5 @@
 /httpRequests/
 # idea插件
 /.idea
+依赖
+/node_modules/

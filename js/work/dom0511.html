@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dom Title</title>
+    <style>
+        input{
+            color: #999;
+            outline: none;
+        }
+        .ant-input-number-input{
+            width: 600px;
+            height: 56px;
+        }
+        .icon-man{
+            display: inline-block;
+            font-size: 10px;
+            color: #999;
+            background: url("../img/dom-0511/mess.png") no-repeat center left;
+            padding: 20px;
+        }
+        .wrong{
+            background: url("../img/dom-0511/wrong.png") no-repeat center left;
+            color: red;
+        }
+        .right{
+            background: url("../img/dom-0511/right.png") no-repeat center left;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+<label>
+    <input type="text" value="手机 ">
+</label>
+
+<div class="ant-input-number-input">
+    <label >
+        <input type="password">
+    </label>
+    <p class="icon-man">请输入密码</p>
+</div>
+
+
+<script>
+    // 01手机号输入
+    let int1=document.querySelector('input')
+    int1.onfocus=function () {
+        if (this.value==='手机 '){
+            this.value=''
+        }
+        this.style.color="black"
+    }
+    int1.onblur=function (){
+        if (this.value===''){
+            this.value='手机 '
+            this.style.color='#999'
+        }
+    }
+
+    //02 密码框检验
+    let pwd1=document.querySelectorAll('input')[1],img1=document.querySelector('.icon-man')
+    pwd1.onblur=function (){
+        if (this.value.length>16||this.value.length<6){
+            img1.className="icon-man wrong"
+            img1.innerHTML='密码长度不正确'
+        }else {
+            img1.className='icon-man right'
+            img1.innerHTML='.'
+        }
+    }
+
+</script>
+</body>
+</html>

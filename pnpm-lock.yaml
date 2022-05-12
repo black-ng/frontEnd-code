@@ -1,0 +1,16 @@
+lockfileVersion: 5.3
+
+specifiers:
+  yarn: ^1.22.18
+
+dependencies:
+  yarn: 1.22.18
+
+packages:
+
+  /yarn/1.22.18:
+    resolution: {integrity: sha512-oFffv6Jp2+BTUBItzx1Z0dpikTX+raRdqupfqzeMKnoh7WD6RuPAxcqDkMUy9vafJkrB0YaV708znpuMhEBKGQ==}
+    engines: {node: '>=4.0.0'}
+    hasBin: true
+    requiresBuild: true
+    dev: false
