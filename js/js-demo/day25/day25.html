@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>day25</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: url(images/1.jpg) no-repeat center top;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        .baidu {
+            overflow: hidden;
+            margin: 100px auto;
+            background-color: #fff;
+            width: 410px;
+            padding-top: 3px;
+        }
+
+        .baidu li {
+            float: left;
+            margin: 0 1px;
+            cursor: pointer;
+        }
+
+        .baidu img {
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+<button>按钮</button>
+<button>按钮</button>
+<button>按钮</button>
+<button>按钮</button>
+<button>按钮</button>
+
+<ul class="baidu">
+    <li><img src="images/1.jpg" alt="img1"></li>
+    <li><img src="images/2.jpg" alt="img2"></li>
+    <li><img src="images/3.jpg" alt="img3"></li>
+    <li><img src="images/4.jpg" alt="img4"></li>
+</ul>
+<script>
+    //01 排它
+    let btns = document.querySelectorAll('button');
+    for (let i = 0; i < btns.length; i++) {
+        btns[i].onclick=function (){
+            for (let j = 0; j < btns.length; j++) {
+                btns[j].style.backgroundColor=''
+            }
+            this.style.backgroundColor='blue'
+        }
+    }
+
+    //02 更换背景图片
+    let fimg=document.querySelectorAll('img')
+    console.log(fimg)
+    for (let i = 0; i < fimg.length; i++) {
+        fimg[i].onclick=function (){
+            document.body.style.background='url('+this.src+')'
+        }
+    }
+
+</script>
+</body>
+</html>
