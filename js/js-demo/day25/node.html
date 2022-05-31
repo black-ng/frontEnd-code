@@ -59,6 +59,26 @@
         .nav ul li a:hover {
             background-color: #FFF5DA;
         }
+        textarea{
+            height: 200px;
+            width: 300px;
+            border: 1px solid red;
+            outline: none;
+            resize: none;
+        }
+        .icon-back{
+            margin-top: 50px;
+        }
+        .icon-back li{
+            width: 300px;
+            padding: 5px;
+            background: yellow;
+            color: red;
+            font-size: 14px;
+            margin: 15px 0;
+
+        }
+
     </style>
 </head>
 <body>
@@ -120,6 +140,15 @@
         </ul>
     </li>
 </ul>
+
+<div class="icon-back-div">
+    <label for=""></label>
+    <textarea name="" id="" cols="30" rows="10"></textarea>
+    <button class="icon-back">发布</button>
+    <ul class="icon-back"></ul>
+</div>
+
+
 <script>
     const nav=document.querySelector('.nav')
     const navl=nav.children
@@ -131,6 +160,27 @@
             this.children[1].style.display='none'
         }
     }
+
+    //兄弟节点
+    const af=nav.children[0].children[0]
+    afn=af.nextElementSibling
+    console.log(afn)
+
+    //新增节点，留言框案例
+    textinp=document.querySelector('textarea')
+    bnt=document.querySelectorAll('.icon-back')[0]
+    bli=document.querySelectorAll('.icon-back')[1]
+    bnt.onclick=function (){
+        if (textinp.value === ''){
+            alert('非空')
+            return
+        }
+        let liv=document.createElement('li')
+        liv.innerHTML=textinp.value
+        bli.insertBefore(liv,bli.children[0])
+        textinp.value = ''
+    }
+
 </script>
 </body>
 </html>

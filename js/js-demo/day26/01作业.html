@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>点击时间高级-01作业</title>
+    <style>
+        table {
+            width: 600px;
+            cursor: pointer;
+        }
+
+        table td {
+            text-align: center;
+        }
+
+        table th {
+            background-color: blueviolet;
+        }
+
+        table tr {
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+<div id="dv">
+    <label for="uname">请输入姓名:</label><input type="text" value="" id="uname" />
+    <br>
+    <label for="email"> 请输入邮箱:</label><input type="text" value="" id="email" />
+</div>
+
+<input type="button" value="添加" id="btn" />
+<table border="1" cellpadding="0" cellspacing="0" id="tb">
+    <thead>
+    <tr>
+        <th>姓名</th>
+        <th>邮箱</th>
+    </tr>
+    </thead>
+    <tbody id="tbd">
+    <tr>
+        <td>小黑</td>
+        <td>xiaohei@126.com</td>
+    </tr>
+    </tbody>
+</table>
+<script>
+    const uname=document.getElementById('uname')
+    console.log(uname)
+    const email=document.getElementById('email')
+    const btn=document.getElementById('btn')
+    const tbd=document.getElementById('tbd')
+    btn.onclick=function (){
+        if (uname.value===''||email.value===''){
+            alert('非空')
+            return
+        }
+        let tbd1=document.createElement('td')
+        tbd1.innerHTML=uname.value
+        let tbd2=document.createElement('td')
+        tbd2.innerHTML=email.value
+        let tr=document.createElement('tr')
+        tr.appendChild(tbd1)
+        tr.appendChild(tbd2)
+        tbd.appendChild(tr)
+    }
+</script>
+</body>
+</html>
