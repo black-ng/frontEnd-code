@@ -148,6 +148,8 @@
     <ul class="icon-back"></ul>
 </div>
 
+<span class="span-d">我是span</span>
+<div>我是div</div>
 
 <script>
     const nav=document.querySelector('.nav')
@@ -165,6 +167,19 @@
     const af=nav.children[0].children[0]
     afn=af.nextElementSibling
     console.log(afn)
+
+    //兼容老版本的获取兄弟元素方法
+    function getNextElemt(elemt){
+        let el=elemt
+        while (el=el.nextSibling){
+            if (el.nodeType===1){
+                return el
+            }
+        }
+        return null
+    }
+    const sp=document.querySelector('.span-d')
+    di=getNextElemt(sp)
 
     //新增节点，留言框案例
     textinp=document.querySelector('textarea')

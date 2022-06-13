@@ -20,6 +20,31 @@
         table tr {
             background-color: pink;
         }
+        .btn-de{
+            margin-top: 40px;
+        }
+        textarea{
+            margin-top: 40px;
+            width: 200px;
+            height: 100px;
+            border: 1px solid red;
+            outline: none;
+            resize: none;
+        }
+        ul{
+            margin-top: 50px;
+        }
+        li{
+            width: 300px;
+            padding: 5px;
+            background-color: yellow;
+            color: red;
+            font-size: 14px;
+            margin: 15px 0;
+        }
+        a{
+            float: right;
+        }
     </style>
 </head>
 <body>
@@ -44,7 +69,24 @@
     </tr>
     </tbody>
 </table>
+
+<!--<button class="btn-de">删除</button>-->
+<!--<ul>-->
+<!--    <li>111</li>-->
+<!--    <li>222</li>-->
+<!--    <li>333</li>-->
+<!--    <li>444</li>-->
+<!--</ul>-->
+
+<label>
+    <textarea></textarea>
+</label>
+<button class="btn-liu">发布</button>
+<ul class="ul-liu"></ul>
+
+
 <script>
+    //01 增加表格内容
     const uname=document.getElementById('uname')
     console.log(uname)
     const email=document.getElementById('email')
@@ -64,6 +106,52 @@
         tr.appendChild(tbd2)
         tbd.appendChild(tr)
     }
+
+    //02删除内容
+    // const dul=document.querySelector('ul')
+    // const dant=document.querySelector('.btn-de')
+    // if (dul.children.length===0){
+    //     dant.disabled=true
+    // }
+    // dant.onclick=function (){
+    //     dul.removeChild(dul.children[0])
+    //     if (dul.children.length===0){
+    //         this.disabled=true
+    //     }
+    // }
+
+    //03删除留言板
+    const text = document.querySelector("textarea");
+    const lbtn = document.querySelector(".btn-liu");
+    const lul = document.querySelector(".ul-liu");
+
+
+    lbtn.onclick = function()
+    {
+        if(text.value === "")
+        {
+            alert("输入内容为空,请重新输入")
+            return
+        }
+        //创建元素,加入到ul中
+        let li = document.createElement('li')
+        //如果需要添加标签,那么请先通过代码联想,做好标签,再拷进来
+        li.innerHTML = text.value + '<a href="#">删除</a>'
+        lul.insertBefore(li, lul.children[0])
+        //清空
+        text.value=""
+        //添加a标签的点击事件
+        const as = document.querySelectorAll("a");
+        for(let i=0; i<as.length; i++)
+        {
+            as[i].onclick = function()
+            {
+                //删除节点(点击元素.爹)
+                lul.removeChild( this.parentNode )
+            }
+        }
+    }
+
 </script>
 </body>
 </html>
