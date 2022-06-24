@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8'>
+  <title>day26-03事件</title>
+</head>
+<body>
+<script>
+  //  第三个参数为是否为捕获型
+  //  捕获型和冒泡型，捕获分别为从顶到低，冒泡为低到顶
+  document.body.addEventListener('click',function(){
+    document.body.removeEventListener('click',function() {
+    })
+  },true)
+</script>
+</body>
+</html>

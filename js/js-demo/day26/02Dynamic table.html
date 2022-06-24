@@ -34,7 +34,7 @@
   <tbody>
   </tbody>
 </table>
-
+<div class='alink'></div>
 <script>
   let datas = [{
     name: '魏璎珞',
@@ -66,21 +66,43 @@
     }
     let tbody = document.querySelector('tbody')
     tbody.appendChild(tr)
-    let a=document.createElement('a')
-    a.innerHTML='删除'
-    a.href='#'
-    let td=document.createElement('td')
+    let a = document.createElement('a')
+    a.innerHTML = '删除'
+    a.href = '#'
+    let td = document.createElement('td')
     td.appendChild(a)
     tr.appendChild(td)
-    a.onclick=function(){
+    a.onclick = function() {
       tbody.removeChild(this.parentNode.parentNode)
     }
   }
+  alink = document.querySelector('.alink')
+  function create_ele_arr() {
+    let arr = [],  start = new Date()
+    for (let i = 0; i < 100; i++) {
+      arr.push('<a href=\'#\'>百度</a>')
+    }
+    alink.innerHTML = arr.join('')
+    let end = new Date()
+    console.log(end - start)
+  }
 
+  create_ele_arr()
+
+  function create_ele_str() {
+    let start = new Date()
+    for (let i = 0; i < 100; i++) {
+      alink.innerHTML+= '<a href=\'#\'>百度</a>'
+    }
+    let end = new Date()
+    console.log(end - start)
+  }
+
+  create_ele_str()
   /*
   三种创建方式的效率
   innerhtml字符串拼接，效率较低
-  innerhtml往数组存，效率最快，是字符串的500倍
+  innerhtml往数组存，效率最快，是字符串的500倍(性能较差的机器能500倍，技能较好的也相差20-30倍)
   createEle 创建元素，大约是数组存的1/3
   */
 
