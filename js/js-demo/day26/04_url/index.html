@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8'>
+  <title>首页</title>
+  <style>
+    .btn-b{
+        position: absolute;
+        right: 100px;
+    }
+  </style>
+</head>
+<body>
+<div class='us-d'></div>
+<button class='btn-b'>返回登录</button>
+<script>
+  let user=location.search.substr(1)
+  arr=user.split('=')
+  let us_d=document.querySelector('.us-d')
+  us_d.innerHTML=arr[1]+' 已登录'
+  let btn_b=document.querySelector('.btn-b')
+  btn_b.addEventListener('click',function() {
+    location.assign('./login.html')
+  })
+</script>
+</body>
+</html>

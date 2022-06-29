@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8'>
+  <title>day27-作业</title>
+  <style>
+    .int-a{
+        display: block;
+        margin-top: 20px;
+    }
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    .search {
+        position: relative;
+        width: 178px;
+        margin: 100px;
+    }
+
+    .con {
+        display: none;
+        position: absolute;
+        top: -40px;
+        border: 1px solid rgba(0, 0, 0, .2);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, .2);
+        padding: 5px 0;
+        font-size: 18px;
+        line-height: 20px;
+        color: #333;
+    }
+
+    .con::before {
+        content: '';
+        width: 0;
+        height: 0;
+        position: absolute;
+        top: 28px;
+        left: 18px;
+        border: 8px solid #000;
+        border-style: solid dashed dashed;
+        border-color: #fff transparent transparent;
+    }
+    .time{
+        position: absolute;
+        right: 45%;
+    }
+    span{
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        background: #333;
+        font-size: 20px;
+        color: white;
+        text-align: center;
+        line-height: 40px;
+    }
+    .time-div{
+        display: inline-block;
+        font-size: 20px;
+        line-height: 40px;
+    }
+  .num-div{
+      margin-top: 20px;
+      margin-left: 50px;
+  }
+  </style>
+</head>
+<body>
+<ul class='ul-a'>
+  <li>小明</li>
+  <li>小红</li>
+  <li>小蓝</li>
+  <li>小白</li>
+</ul>
+<button class='bt-a'>
+  提交
+</button>
+<label>
+  <input type='text' class='int-a'>
+</label>
+<div class='search'>
+  <div class='con'>
+  </div>
+  <label>
+    <input type='text' class='jd' placeholder='请输入快递单号'>
+  </label>
+</div>
+<button class='c-btn'>清楚UL关闭</button>
+<div class='time'>
+  <div class='time-div'>距离19时还有</div>
+  <span class='h'></span>
+  <span class='m'></span>
+  <span class='s'></span></div>
+<div class='num-div'>
+  手机号码
+  <label for=''>
+    <input type='text' name='' id='' class='num-int'>
+  </label>
+  <button class='num-btn'>发送</button>
+</div>
+
+<script>
+  let ula=document.querySelector('.ul-a'),bta=document.querySelector('.bt-a')
+  ula.addEventListener('click',backRed)
+  function backRed(e) {
+    if (e.target.nodeName==='LI'){
+      e.target.style.backgroundColor='red'
+    }
+  }
+  bta.addEventListener('click',function() {
+    let li = document.createElement('li')
+    li.innerHTML='input'
+    ula.insertBefore(li,ula.children[0])
+  })
+
+  // 按键盘S键位，获取输入框焦点
+  let inta=document.querySelector('.int-a')
+  document.addEventListener('keyup', function(e) {
+    if (e.code==='KeyS'){
+      inta.focus()
+      console.log(e.code)
+    }
+  })
+
+  //03 模拟京东快递单号查询
+  let jd_int=document.querySelector('.jd'),search_con=document.querySelector('.con')
+  jd_int.addEventListener('keyup',function() {
+    if (this.value===''){
+      search_con.style.display='none'
+    }else {
+      search_con.style.display='block'
+      search_con.innerHTML=this.value
+    }
+  })
+  jd_int.addEventListener('blur',function() {
+    search_con.style.display='none'
+  })
+  jd_int.addEventListener('focus',function() {
+    if (this.value!==''){
+      search_con.style.display='block'
+    }
+  })
+
+  //04 Bom
+  window.addEventListener('load',function() {
+    console.log('等待全部DOM,CSS,JS加载完成')
+  })
+  // 这行会比上面的先打印
+  document.addEventListener('DOMContentLoaded',function() {
+    console.log('等待dom加载完成')
+  })
+
+  //05 windos窗口变化
+  let search_d=document.querySelector('.search')
+  window.addEventListener('resize',function() {
+    if (window.innerWidth<800){
+      search_d.style.display='none'
+    }else {
+      search_d.style.display='block'
+      console.log(window.innerHeight+'\n'+window.innerWidth)
+    }
+  })
+
+  //06 定时器
+  let time_a= window.setTimeout(function() {
+    ula.style.display='none'
+    // alert('ul关闭')
+  },3000)
+  let clear_btn=document.querySelector('.c-btn')
+  clear_btn.addEventListener('click',function() {
+    window.clearTimeout(time_a)
+  })
+
+  //07 某个时间倒计时
+  let h_span=document.querySelector('.h'),m_span=document.querySelector('.m'),
+    s_span=document.querySelector('.s'),now=new Date()
+  // function count_time(){
+  //   let h=now.getHours(),m=now.getMinutes(),s=now.getSeconds()
+  //   h=h<10?'0'+h:h
+  //   m=m<10?'0'+m:m
+  //   s=s<10?'0'+s:s
+  //   // console.log(h+':'+m+':'+s)
+  //   h_span.innerHTML=h
+  //   m_span.innerHTML=m
+  //   s_span.innerHTML=s
+  // }
+  function count_time() {
+    const ex_time=new Date('2022-06-29 19:00:00')
+    const now=new Date()
+    let times=(ex_time-now)/1000
+    let h=parseInt(times/60/60),m=parseInt(times/60%60),s=parseInt(times%60)
+    h=h<10?'0'+h:h
+    m=m<10?'0'+m:m
+    s=s<10?'0'+s:s
+    h_span.innerHTML=h
+    m_span.innerHTML=m
+    s_span.innerHTML=s
+  }
+
+  count_time()
+  setInterval(count_time,1000)
+
+  //08 手机号码发送后倒计时
+  let time_num=60
+  let num_btn=document.querySelector('.num-btn')
+  num_btn.addEventListener('click',function() {
+    this.disabled=true
+    let timer=setInterval(function() {
+      if (time_num===0){
+        clearInterval(timer)
+        num_btn.disabled=false
+        num_btn.innerHTML='发送'
+        time_num=60
+      }else {
+        num_btn.innerHTML='剩余'+time_num+'秒'
+        time_num--
+      }
+    },1000)
+  })
+</script>
+</body>
+</html>
