@@ -3,8 +3,70 @@
 <head>
   <meta charset='UTF-8'>
   <title>京东放大镜</title>
+  <style>
+      .preview_wrap {
+          width: 400px;
+          height: 590px;
+      }
+      .preview_img {
+          position: relative;
+          height: 398px;
+          border: 1px solid #ccc;
+      }
+      .mask {
+          display: none;
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 300px;
+          height: 300px;
+          background: #FEDE4F;
+          opacity: .5;
+          border: 1px solid #ccc;
+          cursor: move;
+      }
+      .big {
+          display: none;
+          position: absolute;
+          left: 410px;
+          top: 0;
+          width: 500px;
+          height: 500px;
+          background-color: pink;
+          z-index: 999;
+          border: 1px solid #ccc;
+          overflow: hidden;
+      }
+      .big img {
+          position: absolute;
+          top: 0;
+          left: 0;
+      }
+  </style>
 </head>
 <body>
+<div class="preview_wrap">
+  <div class="preview_img">
+    <img src="images/s3.png" alt="">
+    <div class="mask"></div>
+    <div class="big">
+      <img src="images/big.jpg" alt="" class="bigImg">
+    </div>
+  </div>
+</div>
+<script>
+  let preview=document.querySelector('.preview_img'),mask=document.querySelector('.mask'),
+    big=document.querySelector('.big')
+  preview.onmouseover =function(){
+    mask.style.display="block"
+    big.style.display="block"
+  }
 
+  preview.onmouseout =function(){
+    mask.style.display="none"
+    big.style.display="none"
+  }
+
+</script>
 </body>
 </html>
