@@ -57,14 +57,48 @@
 <script>
   let preview=document.querySelector('.preview_img'),mask=document.querySelector('.mask'),
     big=document.querySelector('.big')
+  //01 显示小图和大图
   preview.onmouseover =function(){
     mask.style.display="block"
     big.style.display="block"
   }
-
+  //02 移走取消
   preview.onmouseout =function(){
     mask.style.display="none"
     big.style.display="none"
+  }
+
+  //03 移动黄色小盒子
+  preview.onmousemove =function(e){
+    /*
+    获取鼠标在小图的坐标
+    黄色层是300px，父盒子是400px，实际可移动只有100px
+    再让黄色层只到一半再移动，=150px
+     */
+    let x=(e.pageX-this.offsetLeft)-mask.offsetWidth/2,y=(e.pageY-this.offsetTop)-mask.offsetHeight/2
+
+    //防止超出盒子边界
+    let maxMask=preview.offsetWidth-mask.offsetWidth
+
+    x=x<=0?0:x>maxMask?maxMask:x
+    y=y<=0?0:y>maxMask?maxMask:y
+    // if(x<=0){
+    //   x=0
+    // }
+    // else if(x>maxMask){
+    //   x=maxMask
+    // }
+    // if(y<=0){
+    //   y=0
+    // }
+    // else if(y>maxMask){
+    //   y=maxMask
+    // }
+    //
+    mask.style.left=x+'px'
+    mask.style.top=y+'px'
+
+
   }
 
 </script>
