@@ -82,22 +82,23 @@
 
     x=x<=0?0:x>maxMask?maxMask:x
     y=y<=0?0:y>maxMask?maxMask:y
-    // if(x<=0){
-    //   x=0
-    // }
-    // else if(x>maxMask){
-    //   x=maxMask
-    // }
-    // if(y<=0){
-    //   y=0
-    // }
-    // else if(y>maxMask){
-    //   y=maxMask
-    // }
-    //
+
     mask.style.left=x+'px'
     mask.style.top=y+'px'
 
+    /*
+    等比放大
+    公式：遮挡层移动距离(x1)/遮挡层最大移动距离(x2)=大图的移动距离(y1)/大图的最大移动距离(y2)
+    变形：y1=x1*y2/x2
+    实际可移动距离=大图片-div=实际可移动的距离
+     */
+    const big_img=document.querySelector('.bigImg')
+    let Maxbig=big_img.offsetWidth-big.offsetWidth
+    let bigX=x*Maxbig/maxMask
+    let bigY=y*Maxbig/maxMask
+    //负数是方向操作，鼠标往右移动，大图就应往左（达成放大效果）
+    big_img.style.left =-bigX+'px'
+    big_img.style.top =-bigY+'px'
 
   }
 
