@@ -1,10 +1,90 @@
 <!DOCTYPE html>
-<html lang='en'>
-<head>
-  <meta charset='UTF-8'>
-  <title>淘宝右侧栏</title>
-</head>
-<body>
+<html>
 
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+      .slider-bar {
+          position: absolute;
+          left: 50%;
+          top: 300px;
+          margin-left: 400px;
+          width: 45px;
+          height: 130px;
+          background-color: pink;
+      }
+
+      .w {
+          width: 800px;
+          margin: 10px auto;
+      }
+
+      .header {
+          height: 150px;
+          background-color: purple;
+      }
+
+      .banner {
+          height: 250px;
+          background-color: skyblue;
+      }
+
+      .main {
+          height: 1000px;
+          background-color: yellowgreen;
+      }
+
+      span {
+          display: none;
+          position: absolute;
+          bottom: 0;
+      }
+  </style>
+</head>
+
+<body>
+<div class="slider-bar">
+  <span class="goBack">返回顶部</span>
+</div>
+<div class="header w">头部区域</div>
+<div class="banner w">banner区域</div>
+<div class="main w">主体部分</div>
+<script>
+  //让侧边栏跟随移动，到了一定高度就停止不动
+  const slidebar=document.querySelector('.slider-bar')
+  /*获取banner距离页面顶部的高度
+  高度内，侧边栏随着滚动
+  超出，侧边栏停止滚动
+   */
+  const banner=document.querySelector('.banner')
+  let bannerTop =banner.offsetTop
+  let sliderTop=slidebar.offsetTop-bannerTop
+  const main=document.querySelector('.main') //主体
+  const goBack=document.querySelector('.goBack') //返回顶部
+  let mainTop=main.offsetTop
+  //文档滚动事件
+  document.onscroll = function() {
+    console.log(window.scrollY)
+    if (window.scrollY>bannerTop){
+      slidebar.style.position='fixed'
+      slidebar.style.top=sliderTop+'px'
+    }else{
+      slidebar.style.position='absolute'
+      slidebar.style.top='300px'
+    }
+    if (window.scrollY>mainTop){
+      goBack.style.display='block'
+    }else{
+      goBack.style.display='none'
+    }
+  }
+  goBack.onclick=function() {
+    window.scrollTo(0,0)
+  }
+
+
+</script>
 </body>
+
 </html>
