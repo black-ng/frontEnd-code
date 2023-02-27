@@ -37,9 +37,19 @@
     const sliderbar = document.querySelector('.sliderbar')
     const con = document.querySelector('.con')
 
-    sliderbar.onmouseenter=function(){
-      annimor(con,-160,15)
+    sliderbar.onmouseenter = function(){
+      annimor(con,-160,15,(() => {
+        sliderbar.children[0].innerHTML = '➡'
+      }))
     }
+
+    sliderbar.onmouseleave = (() => {
+      annimor(con,0,15,(() =>{
+        sliderbar.children[0].innerHTML = '⬅'
+      }))
+    })
+
+
 
 
   </script>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        ul,ol{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+        }
+        .focus {
+            position: relative;
+            width: 721px;
+            height: 455px;
+            background-color: purple;
+            overflow: hidden;
+            margin: auto;
+        }
+
+        .focus ul {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 600%;
+        }
+
+        .focus ul li {
+            float: left;
+        }
+
+        .arrow-l,
+        .arrow-r {
+            display: none;
+            position: absolute;
+            top: 50%;
+            margin-top: -20px;
+            width: 24px;
+            height: 40px;
+            background: rgba(0, 0, 0, .3);
+            text-align: center;
+            line-height: 40px;
+            color: #fff;
+            font-family: 'icomoon';
+            font-size: 18px;
+            z-index: 2;
+        }
+
+        .arrow-r {
+            right: 0;
+        }
+
+        .circle {
+            position: absolute;
+            bottom: 10px;
+            left: 50px;
+        }
+
+        .circle li {
+            float: left;
+            width: 8px;
+            height: 8px;
+            /*background-color: #fff;*/
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            margin: 0 3px;
+            border-radius: 50%;
+            /*鼠标经过显示小手*/
+            cursor: pointer;
+        }
+
+        .current {
+            background-color: #fff;
+        }
+    </style>
+    <script src="animate.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>
+<div class="focus">
+    <!-- 左侧按钮 -->
+    <a href="javascript:;" class="arrow-l">
+        &lt;
+    </a>
+    <!-- 右侧按钮 -->
+    <a href="javascript:;" class="arrow-r">
+        &gt;
+    </a>
+    <!-- 核心的滚动区域 -->
+    <ul>
+        <li>
+            <a href="#"><img src="images/focus.jpg" alt=""></a>
+        </li>
+        <li>
+            <a href="#"><img src="images/focus1.jpg" alt=""></a>
+        </li>
+        <li>
+            <a href="#"><img src="images/focus2.jpg" alt=""></a>
+        </li>
+        <li>
+            <a href="#"><img src="images/focus3.jpg" alt=""></a>
+        </li>
+    </ul>
+    <!-- 小圆圈 -->
+    <ol class="circle">
+    </ol>
+</div>
+<script>
+    const focus = document.querySelector('.focus')
+    const arrow_l = document.querySelector('.arrow-l')
+    const arrow_r = document.querySelector('.arrow-r')
+
+    focus.onmouseenter = (() => {
+        arrow_l.style.display = 'block'
+        arrow_r.style.display = 'block'
+        clearInterval(timer)
+    })
+
+    focus.onmouseleave = (() => {
+        arrow_l.style.display = 'none'
+        arrow_r.style.display = 'none'
+        timer = setInterval(()=>{
+            arrow_r.click()
+        },2000)
+    })
+
+    //  制作小圆点，有几种图就有几个小圆点
+    const ul = document.querySelector('ul')
+    const ol = document.querySelector('.circle')
+    for (let i = 0; i < ul.children.length; i++) {
+        let li = document.createElement('li')
+        //  给每个小圆点都添加一个自定义属性
+        li.setAttribute('index',i)
+
+        ol.appendChild(li)
+        li.onclick = function (){
+            //  唯一效果，先将所有元素的样式情况，然后再高亮我
+            for (let j = 0; j < ol.children.length; j++) {
+                ol.children[j].className = ''
+            }
+            this.className = 'current'
+            /*
+            点击小圆点同样能切图
+            获取点击小圆点的index值
+             */
+            let index = this.getAttribute('index')
+            console.log(index)
+            num = index
+            circle = index
+            annimor(ul,-index * focusWidth,15)
+
+        }
+    }
+
+    //  让第0个圆点高亮
+    ol.children[0].className = 'current'
+    //  为了让动画平滑，再UL后拼接复制第0张图
+    let first = ul.children[0].cloneNode(true)
+    ul.appendChild(first)
+    //  函数同步点击箭头，圆点高亮
+    let circleChange = function () {
+        for (let i = 0; i < ol.children.length; i++) {
+            ol.children[i].className = ''
+        }
+        ol.children[circle].className = 'current'
+    }
+
+    let num = 0,
+        circle = 0,
+        flag = true,
+        focusWidth = focus.offsetWidth
+
+    //  右箭头动画
+    arrow_r.onclick = (()=>{
+        //  解决速度过快问题
+        if (flag){
+            flag = false
+            //  如果到了最后一张图，就要归0
+            if (num === ul.children.length-1){
+                ul.style.left = 0   //  不让用户感知，悄悄归0
+                num = 0
+            }
+            num++
+            annimor(ul , -num * focusWidth , 15 ,(()=>{
+                return flag = true
+            }))
+            //  小圆点也跟着切换
+            circle++
+            //  同样最后一张图也归0
+            if (circle === ol.children.length){
+                circle = 0
+            }
+            circleChange()
+        }
+    })
+
+    //  左箭头动画
+    arrow_l.onclick = (()=>{
+        if (flag){
+            flag = false
+            //  如果已经减到了第0张，俺么需要给最后一张
+            if (num === 0){
+                num = ul.children.length-1
+                //  不单单数字要归0，这个ul也要移动到最后一个
+                ul.style.left = -num * focusWidth + 'px '
+            }
+
+            num--
+            annimor(ul , -num * focusWidth ,15 ,(()=>{
+                return flag =true
+            }))
+
+            //  小圆点修改
+            circle--
+            // if (circle < 0){
+            //     circle = ol.children.length-1
+            // }
+            circle = circle < 0 ? ol.children.length-1 : circle
+            circleChange()
+        }
+    })
+
+     自动播放轮播图
+    let timer = setInterval(()=>{
+       arrow_r.click()
+    },2000)
+
+
+
+</script>
+</body>
+
+</html>
