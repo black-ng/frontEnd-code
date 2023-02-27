@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8'>
+  <title>03_动画案例</title>
+  <style>
+    .sliderbar{
+        position: fixed;
+        right: 0;
+        bottom: 100px;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+        cursor: pointer;
+        color: white;
+    }
+    .con{
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 200px;
+        height: 40px;
+        background: purple;
+        z-index: -1;
+    }
+  </style>
+  <script src='animate.js' charset='UTF-8' type='text/javascript' ></script>
+</head>
+<body>
+  <div class='sliderbar'>
+    <span>←</span>
+    <div class='con'>问题反馈</div>
+  </div>
+  <script type='text/javascript'>
+    //当鼠标移到元素时显示弹窗，移出消失
+    const sliderbar = document.querySelector('.sliderbar')
+    const con = document.querySelector('.con')
+
+    sliderbar.onmouseenter=function(){
+      annimor(con,-160,15)
+    }
+
+
+  </script>
+</body>
+</html>

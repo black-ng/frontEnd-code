@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8'>
+  <title>02_缓冲动画</title>
+  <style type='text/css'>
+    span{
+        position: absolute;
+        left: 0;
+        top: 200px;
+        display: block;
+        width: 150px;
+        height: 150px;
+        background: red;
+    }
+  </style>
+</head>
+<body>
+  <button id = 'btn1'>移动到500</button>
+  <button id = 'btn2'>移动到800</button>
+  <span>hello</span>
+  <script type='text/javascript'>
+    //  点击按钮让span移动，降速移动
+    //  增加匿名函数
+
+    const annimor = (obj,offset,speed,callback) => {
+      clearInterval(obj.timer)
+      obj.timer = setInterval(() => {
+        if (obj.offsetLeft === offset){
+          clearInterval(obj.timer)
+          // 判断是否有传入callback
+          callback && callback()
+
+        }
+        // 改变速度成匀速 (目标位置 - 现在位置 / 10)
+        // 修复向左，向右移动，负数问题
+        let step = (offset - obj.offsetLeft ) / 10
+        step = step >= 0 ? Math.ceil(step) : Math.floor(step)
+        console.log(step)
+        console.log('现在的位置:'+obj.offsetLeft)
+        obj.style.left = obj.offsetLeft + step + 'px'
+      },speed)
+    }
+
+    const btn1 = document.querySelector('#btn1')
+    const btn2 = document.querySelector('#btn2')
+    const span = document.querySelector('span')
+    btn1.onclick = (() => {
+      annimor(span,500,15)
+    })
+    btn2.onclick = (() => {
+      annimor(span,800,15,(() => {
+        span.style.backgroundColor = 'blue'
+      }))
+    })
+
+  </script>
+</body>
+</html>
