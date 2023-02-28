@@ -1,148 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+<head>
     <meta charset="UTF-8">
     <title>dom</title>
-        <style >
-            div,p{
-                width: 200px;
-                height: 30px;
-                line-height: 30px;
-                color: white;
-                background-color: #0099ff;
-            }
-            img{
-                width: 200px;
-                height: 200px;
-                display: block;
-            }
-            #switch{
-                height: 200px;
-                width: 200px;
-                background-color: #333333;
-            }
-        </style>
-    </head>
-    <body>
-    <div id="box1">盒子1</div>
-    <div id="box2">盒子2</div>
-    <ul>
-        <li>列表</li>
-        <li>列表</li>
-        <li>列表</li>
-        <li>列表</li>
-    </ul>
-    <button id="btn">确定</button>
-    <div id="maos" style="width: 200px;height: 200px;background-color: #0099ff;"></div>
-    <label for="demo">测试</label><input type="text" id="demo">
-    <button id="now">显示当前时间</button>
-    <div class="exx">某个时间</div>
-    <p>123</p>
-    <div class="upstyle"></div>
-    <p>
-        文字
+    <style>
+        div, p {
+            width: 200px;
+            height: 30px;
+            line-height: 30px;
+            color: white;
+            background-color: #0099ff;
+        }
+
+        img {
+            width: 200px;
+            height: 200px;
+            display: block;
+        }
+
+        #switch {
+            height: 200px;
+            width: 200px;
+            background-color: #333333;
+        }
+    </style>
+</head>
+<body>
+<div id="box1">盒子1</div>
+<div id="box2">盒子2</div>
+<ul>
+    <li>列表</li>
+    <li>列表</li>
+    <li>列表</li>
+    <li>列表</li>
+</ul>
+<button id="btn">确定</button>
+<div id="maos" style="width: 200px;height: 200px;background-color: #0099ff;"></div>
+<label for="demo">测试</label><input type="text" id="demo">
+<button id="now">显示当前时间</button>
+<div class="exx">某个时间</div>
+<p>123</p>
+<div class="upstyle"></div>
+<p>
+    文字
     <span>123
     </span>
-    </p>
-    <img src="../../img/ldh.jpg" alt="刘德华" title="ldh">
-    <button id='ldh'>刘德华</button>
-    <button id='zxy'>张学友</button>
-    <div id="switch"></div>
-    <button id="on-off">开灯</button>
+</p>
+<img src="../../img/ldh.jpg" alt="刘德华" title="ldh">
+<button id='ldh'>刘德华</button>
+<button id='zxy'>张学友</button>
+<div id="switch"></div>
+<button id="on-off">开灯</button>
 
-    <script type="text/javascript">
-        let div=document.getElementById('box1')
-        div.innerHTML='dsfds'
-        // 01获取一组标签
-        let list=document.getElementsByTagName('li')
-        console.log(list)
-        // 02鼠标事件
-        let i=0,j=0,l=0
-        let btn=document.getElementById('btn')
-        btn.onclick=()=>{alert('hello word')}       //点击
-        const mouse=document.getElementById('maos')
-        mouse.onmouseover=()=>{
-            i+=1
-            console.log('鼠标移动到元素里了*'+i)}
-        mouse.onmouseout=()=>{
-            j+=1
-            console.log('鼠标移出该元素了*'+j)}
-        mouse.onmousemove=()=>{
-            l+=1
-            console.log('仪表再移动*'+l)
-        }
-        mouse.onmousedown=()=>{
-            console.log('鼠标按下')
-        }
-        mouse.onmouseup=()=>{
-            console.log('鼠标抬起')
-        }
-        // 03焦点的获取和丢失
-        const int=document.querySelector('input')
-        int.onfocus=()=>{console.log('获取了焦点')}
-        int.onblur=()=>{console.log('失去了焦点')}
-        // 04实例点击事件
-        const btnnow=document.getElementById('now')
-        const now=document.querySelectorAll('div')
-        console.log(now)
-        btnnow.onclick=()=>{
-            now[3].innerHTML=getDater()
-        }
-        function getDater() {
-            let now = new Date()
-            let year=now.getFullYear()
-            let month = now.getMonth()+1
-            month=month<10?'0'+month:month
-            let days=now.getDate()
-            days=days<10?'0'+days:days
-            let h = now.getHours()
-            h = h<10?'0'+h:h
-            let m = now.getMinutes()
-            m = m<10?'0'+m:m
-            let s = now.getSeconds()
-            s = s<10?'0'+s:s
-            return year+'-'+month+'-'+days+' '+h+':'+m+':'+s
-        }
-        // 05innertex和innerhtml的区别
-        const innerdiv=document.querySelectorAll('div')
-        innerdiv[4].innerHTML='<strong>hell<strong>'  //如果换成text会显示字符串，只显示文本    html用的最多，原样输出（包括标签）
-        // 06更换图片
-        const ldh=document.getElementById('ldh')
-        const zxy=document.getElementById('zxy')
-        const img=document.querySelector('img')
-        ldh.onclick=()=>{
-            img.src='./../img/ldh.jpg'
-            img.title='ldh'
-        }
-        zxy.onclick=()=>{
-            img.src='./../img/zxy.jpg'
-            img.title='zxy'
-        }
-        // 07修改css样式
-        const divstyle=document.getElementsByClassName('upstyle')[0]
-        divstyle.onclick= function (){
-            //谁触发了事件，this就指向谁
-            console.log(this)
-            this.style.height='500px'
-            this.style.width='500px'
-            this.style.backgroundColor='black'
-        }
-        // 08开关灯
-        let buttons=true
-        derail=document.getElementById('on-off')
-        backcolor=document.getElementById('switch')
-        derail.onclick=function (){
-            buttons=!buttons
-            if (buttons){
-                backcolor.style.backgroundColor='#333333'
-                derail.innerHTML='开灯'
-            }
-            else {
-                backcolor.style.backgroundColor='beige'
-                derail.innerHTML='关灯'
-            }
-        }
+<script type="text/javascript">
+    let div = document.getElementById('box1')
+    div.innerHTML = 'dsfds'
+    // 01获取一组标签
+    let list = document.getElementsByTagName('li')
+    console.log(list)
+    // 02鼠标事件
+    let i = 0, j = 0, l = 0
+    let btn = document.getElementById('btn')
+    btn.onclick = () => {
+        alert('hello word')
+    }       //点击
+    const mouse = document.getElementById('maos')
+    mouse.onmouseover = () => {
+        i += 1
+        console.log('鼠标移动到元素里了*' + i)
+    }
+    mouse.onmouseout = () => {
+        j += 1
+        console.log('鼠标移出该元素了*' + j)
+    }
+    mouse.onmousemove = () => {
+        l += 1
+        console.log('仪表再移动*' + l)
+    }
+    mouse.onmousedown = () => {
+        console.log('鼠标按下')
+    }
+    mouse.onmouseup = () => {
+        console.log('鼠标抬起')
+    }
+    // 03焦点的获取和丢失
+    const int = document.querySelector('input')
+    int.onfocus = () => {
+        console.log('获取了焦点')
+    }
+    int.onblur = () => {
+        console.log('失去了焦点')
+    }
+    // 04实例点击事件
+    const btnnow = document.getElementById('now')
+    const now = document.querySelectorAll('div')
+    console.log(now)
+    btnnow.onclick = () => {
+        now[3].innerHTML = getDater()
+    }
 
-    </script>
-    </body>
+    function getDater() {
+        let now = new Date()
+        let year = now.getFullYear()
+        let month = now.getMonth() + 1
+        month = month < 10 ? '0' + month : month
+        let days = now.getDate()
+        days = days < 10 ? '0' + days : days
+        let h = now.getHours()
+        h = h < 10 ? '0' + h : h
+        let m = now.getMinutes()
+        m = m < 10 ? '0' + m : m
+        let s = now.getSeconds()
+        s = s < 10 ? '0' + s : s
+        return year + '-' + month + '-' + days + ' ' + h + ':' + m + ':' + s
+    }
+
+    // 05innertex和innerhtml的区别
+    const innerdiv = document.querySelectorAll('div')
+    innerdiv[4].innerHTML = '<strong>hell<strong>'  //如果换成text会显示字符串，只显示文本    html用的最多，原样输出（包括标签）
+    // 06更换图片
+    const ldh = document.getElementById('ldh')
+    const zxy = document.getElementById('zxy')
+    const img = document.querySelector('img')
+    ldh.onclick = () => {
+        img.src = './../img/ldh.jpg'
+        img.title = 'ldh'
+    }
+    zxy.onclick = () => {
+        img.src = './../img/zxy.jpg'
+        img.title = 'zxy'
+    }
+    // 07修改css样式
+    const divstyle = document.getElementsByClassName('upstyle')[0]
+    divstyle.onclick = function () {
+        //谁触发了事件，this就指向谁
+        console.log(this)
+        this.style.height = '500px'
+        this.style.width = '500px'
+        this.style.backgroundColor = 'black'
+    }
+    // 08开关灯
+    let buttons = true
+    derail = document.getElementById('on-off')
+    backcolor = document.getElementById('switch')
+    derail.onclick = function () {
+        buttons = !buttons
+        if (buttons) {
+            backcolor.style.backgroundColor = '#333333'
+            derail.innerHTML = '开灯'
+        } else {
+            backcolor.style.backgroundColor = 'beige'
+            derail.innerHTML = '关灯'
+        }
+    }
+
+</script>
+</body>
 </html>

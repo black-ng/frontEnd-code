@@ -4,33 +4,38 @@
     <meta charset="UTF-8">
     <title>dom</title>
     <style>
-        #s{
+        #s {
             width: 10em;
             height: 10em;
         }
-        #box{
+
+        #box {
             position: relative;
             width: 500px;
             border-bottom: 1px solid black;
             margin: 100px auto;
         }
-        #box input{
+
+        #box input {
             width: 370px;
             height: 30px;
             border: 0;
             outline: none;
         }
-        #box img{
+
+        #box img {
             position: absolute;
             top: 2px;
             right: 2px;
             width: 24px;
         }
-        ul{
+
+        ul {
             width: 250px;
             margin: 100px auto;
         }
-        li{
+
+        li {
             width: 24px;
             height: 24px;
             list-style: none;
@@ -68,40 +73,40 @@
 
 <script>
     //01 根据时间显示早午晚好
-    let imgp=document.getElementById('s'),divp=document.getElementById('ts'),now=new Date()
-    hh=now.getHours()
-    if (hh<12){
-        imgp.src='./../img/25-dom/s.gif'
-        divp.innerHTML='上午好'
-    }else if (hh<18){
-        imgp.src='./../img/25-dom/x.gif'
-        divp.innerHTML='中午好'
-    }else {
-        imgp.src='./../img/25-dom/w.gif'
-        divp.innerHTML='晚上好'
+    let imgp = document.getElementById('s'), divp = document.getElementById('ts'), now = new Date()
+    hh = now.getHours()
+    if (hh < 12) {
+        imgp.src = './../img/25-dom/s.gif'
+        divp.innerHTML = '上午好'
+    } else if (hh < 18) {
+        imgp.src = './../img/25-dom/x.gif'
+        divp.innerHTML = '中午好'
+    } else {
+        imgp.src = './../img/25-dom/w.gif'
+        divp.innerHTML = '晚上好'
     }
 
     //02 密码栏的开关
-    let pwdimg=document.querySelectorAll('img')[1],pwdint=document.querySelector('input'),Ispwd=true
-    pwdimg.onclick=()=>{
-        Ispwd=!Ispwd
-        if (Ispwd){
-            pwdint.type='password'
-            pwdimg.src='./../img/25-dom/close.png'
-        }else {
-            pwdint.type='text'
-            pwdimg.src='./../img/25-dom/open.png'
+    let pwdimg = document.querySelectorAll('img')[1], pwdint = document.querySelector('input'), Ispwd = true
+    pwdimg.onclick = () => {
+        Ispwd = !Ispwd
+        if (Ispwd) {
+            pwdint.type = 'password'
+            pwdimg.src = './../img/25-dom/close.png'
+        } else {
+            pwdint.type = 'text'
+            pwdimg.src = './../img/25-dom/open.png'
         }
-        
+
     }
-    
+
     //03 精灵图显示
-    let lis=document.querySelectorAll('li')
-    for (let i = 1 ; i <lis.length ; i++) {
+    let lis = document.querySelectorAll('li')
+    for (let i = 1; i < lis.length; i++) {
         // 填写背景图片的坐标X和y 0px -44px
-        lis[i].style.backgroundPosition='0px -'+i*44+'px'
+        lis[i].style.backgroundPosition = '0px -' + i * 44 + 'px'
     }
-    
+
 </script>
 </body>
 </html>

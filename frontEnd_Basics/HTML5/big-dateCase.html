@@ -1,76 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BigDate_Case</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BigDate_Case</title>
 </head>
 <style type="text/css">
-  body{
-    background-color: #333;
-  }
-  .map{
-    position: relative;
-    width: 747px;
-    height: 617px;
-    background: url(../../../../BaiduNetdiskDownload/前端开发/代码等多个文件/课件/08_CSS3旋转动画/素材/map.png);
-    margin: 0 auto;
-  }
-  .city{
-    position:absolute;
-    top: 227px;
-    right: 193px;
-    color: #fff;
-  }
-  .dotted{
-    width: 8px;
-    height: 8px;
-    background-color: #09f;
-    border-radius: 50%;
-  }
-  .city div[class^="pusle"]{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    width: 8px;
-    height: 8px;
-    box-shadow: 0 0 12px #009dfd;
-    border-radius: 50%;
-    animation: pusle 1s infinite linear;
-  }
-  .city div .pusle2{
-    animation-delay: .4s;
-  }
-  .city div .pusle3{
-    animation-delay: .6s;
-  }
+    body {
+        background-color: #333;
+    }
 
-  @keyframes pusle {
-    0%{}
-    70%{
-      width: 52px;
-      height: 52px;
-      opacity: 1;
+    .map {
+        position: relative;
+        width: 747px;
+        height: 617px;
+        background: url(../../../../BaiduNetdiskDownload/前端开发/代码等多个文件/课件/08_CSS3旋转动画/素材/map.png);
+        margin: 0 auto;
     }
-    100%{
-      width: 70px;
-      height: 70px;
-      opacity: 0;
+
+    .city {
+        position: absolute;
+        top: 227px;
+        right: 193px;
+        color: #fff;
     }
-  }
+
+    .dotted {
+        width: 8px;
+        height: 8px;
+        background-color: #09f;
+        border-radius: 50%;
+    }
+
+    .city div[class^="pusle"] {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 8px;
+        height: 8px;
+        box-shadow: 0 0 12px #009dfd;
+        border-radius: 50%;
+        animation: pusle 1s infinite linear;
+    }
+
+    .city div .pusle2 {
+        animation-delay: .4s;
+    }
+
+    .city div .pusle3 {
+        animation-delay: .6s;
+    }
+
+    @keyframes pusle {
+        0% {
+        }
+        70% {
+            width: 52px;
+            height: 52px;
+            opacity: 1;
+        }
+        100% {
+            width: 70px;
+            height: 70px;
+            opacity: 0;
+        }
+    }
 
 </style>
 <body>
-  <div class="map">
+<div class="map">
     <div class="city">
-      <div class="dotted">
-        <div class="pusle1"></div>
-        <div class="pusle2"></div>
-        <div class="pusle3"></div>
-      </div>
+        <div class="dotted">
+            <div class="pusle1"></div>
+            <div class="pusle2"></div>
+            <div class="pusle3"></div>
+        </div>
     </div>
-  </div>
+</div>
 </body>
 </html>

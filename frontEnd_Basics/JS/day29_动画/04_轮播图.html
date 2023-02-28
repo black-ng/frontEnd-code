@@ -5,16 +5,19 @@
     <meta charset="UTF-8">
     <title></title>
     <style>
-        *{
+        * {
             padding: 0;
             margin: 0;
         }
-        ul,ol{
+
+        ul, ol {
             list-style: none;
         }
-        a{
+
+        a {
             text-decoration: none;
         }
+
         .focus {
             position: relative;
             width: 721px;
@@ -124,9 +127,9 @@
     focus.onmouseleave = (() => {
         arrow_l.style.display = 'none'
         arrow_r.style.display = 'none'
-        timer = setInterval(()=>{
+        timer = setInterval(() => {
             arrow_r.click()
-        },2000)
+        }, 2000)
     })
 
     //  制作小圆点，有几种图就有几个小圆点
@@ -135,10 +138,10 @@
     for (let i = 0; i < ul.children.length; i++) {
         let li = document.createElement('li')
         //  给每个小圆点都添加一个自定义属性
-        li.setAttribute('index',i)
+        li.setAttribute('index', i)
 
         ol.appendChild(li)
-        li.onclick = function (){
+        li.onclick = function () {
             //  唯一效果，先将所有元素的样式情况，然后再高亮我
             for (let j = 0; j < ol.children.length; j++) {
                 ol.children[j].className = ''
@@ -152,7 +155,7 @@
             console.log(index)
             num = index
             circle = index
-            annimor(ul,-index * focusWidth,15)
+            annimor(ul, -index * focusWidth, 15)
 
         }
     }
@@ -176,23 +179,23 @@
         focusWidth = focus.offsetWidth
 
     //  右箭头动画
-    arrow_r.onclick = (()=>{
+    arrow_r.onclick = (() => {
         //  解决速度过快问题
-        if (flag){
+        if (flag) {
             flag = false
             //  如果到了最后一张图，就要归0
-            if (num === ul.children.length-1){
+            if (num === ul.children.length - 1) {
                 ul.style.left = 0   //  不让用户感知，悄悄归0
                 num = 0
             }
             num++
-            annimor(ul , -num * focusWidth , 15 ,(()=>{
+            annimor(ul, -num * focusWidth, 15, (() => {
                 return flag = true
             }))
             //  小圆点也跟着切换
             circle++
             //  同样最后一张图也归0
-            if (circle === ol.children.length){
+            if (circle === ol.children.length) {
                 circle = 0
             }
             circleChange()
@@ -200,19 +203,19 @@
     })
 
     //  左箭头动画
-    arrow_l.onclick = (()=>{
-        if (flag){
+    arrow_l.onclick = (() => {
+        if (flag) {
             flag = false
             //  如果已经减到了第0张，俺么需要给最后一张
-            if (num === 0){
-                num = ul.children.length-1
+            if (num === 0) {
+                num = ul.children.length - 1
                 //  不单单数字要归0，这个ul也要移动到最后一个
                 ul.style.left = -num * focusWidth + 'px '
             }
 
             num--
-            annimor(ul , -num * focusWidth ,15 ,(()=>{
-                return flag =true
+            annimor(ul, -num * focusWidth, 15, (() => {
+                return flag = true
             }))
 
             //  小圆点修改
@@ -220,16 +223,15 @@
             // if (circle < 0){
             //     circle = ol.children.length-1
             // }
-            circle = circle < 0 ? ol.children.length-1 : circle
+            circle = circle < 0 ? ol.children.length - 1 : circle
             circleChange()
         }
     })
 
-     自动播放轮播图
-    let timer = setInterval(()=>{
-       arrow_r.click()
-    },2000)
-
+    自动播放轮播图
+    let timer = setInterval(() => {
+        arrow_r.click()
+    }, 2000)
 
 
 </script>

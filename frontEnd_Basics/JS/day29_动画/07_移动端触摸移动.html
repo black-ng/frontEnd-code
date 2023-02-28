@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>07_移动端触摸移动</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            left: 0;
+        }
+    </style>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+
+
+</head>
+<body>
+<div></div>
+</body>
+<script>
+    let div = document.querySelector('div'),
+        startX = 0,
+        startY = 0,
+        x = 0,
+        y = 0,
+        moveX = 0,
+        moveY = 0
+    div.ontouchstart = function (e) {
+        //  触摸元素时，获取当前坐标
+        startX = e.targetTouches[0].pageX
+        startY = e.targetTouches[0].pageY
+        //  获取盒子距离的位置
+        x = this.offsetLeft
+        y = this.offsetTop
+    }
+    div.ontouchmove = function (e) {
+        //  获取移动的距离 = 移动的目标位置 - 现在位置
+        moveX = e.targetTouches[0].pageX - startX
+        moveY = e.targetTouches[0].pageY - startY
+        //  鼠标移动了多少位置，盒子也移动多少
+        this.style.left = x + moveX + 'px'
+        this.style.top = y + moveY + 'px'
+        //  防止屏幕滚动
+        e.preventDefault()
+    }
+</script>
+</html>

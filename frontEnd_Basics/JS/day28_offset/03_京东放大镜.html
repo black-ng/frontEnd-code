@@ -1,106 +1,111 @@
 <!DOCTYPE html>
 <html lang='en'>
 <head>
-  <meta charset='UTF-8'>
-  <title>京东放大镜</title>
-  <style>
-      .preview_wrap {
-          width: 400px;
-          height: 590px;
-      }
-      .preview_img {
-          position: relative;
-          height: 398px;
-          border: 1px solid #ccc;
-      }
-      .mask {
-          display: none;
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 300px;
-          height: 300px;
-          background: #FEDE4F;
-          opacity: .5;
-          border: 1px solid #ccc;
-          cursor: move;
-      }
-      .big {
-          display: none;
-          position: absolute;
-          left: 410px;
-          top: 0;
-          width: 500px;
-          height: 500px;
-          background-color: pink;
-          z-index: 999;
-          border: 1px solid #ccc;
-          overflow: hidden;
-      }
-      .big img {
-          position: absolute;
-          top: 0;
-          left: 0;
-      }
-  </style>
+    <meta charset='UTF-8'>
+    <title>京东放大镜</title>
+    <style>
+        .preview_wrap {
+            width: 400px;
+            height: 590px;
+        }
+
+        .preview_img {
+            position: relative;
+            height: 398px;
+            border: 1px solid #ccc;
+        }
+
+        .mask {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 300px;
+            height: 300px;
+            background: #FEDE4F;
+            opacity: .5;
+            border: 1px solid #ccc;
+            cursor: move;
+        }
+
+        .big {
+            display: none;
+            position: absolute;
+            left: 410px;
+            top: 0;
+            width: 500px;
+            height: 500px;
+            background-color: pink;
+            z-index: 999;
+            border: 1px solid #ccc;
+            overflow: hidden;
+        }
+
+        .big img {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
 </head>
 <body>
 <div class="preview_wrap">
-  <div class="preview_img">
-    <img src="images/s3.png" alt="">
-    <div class="mask"></div>
-    <div class="big">
-      <img src="images/big.jpg" alt="" class="bigImg">
+    <div class="preview_img">
+        <img src="images/s3.png" alt="">
+        <div class="mask"></div>
+        <div class="big">
+            <img src="images/big.jpg" alt="" class="bigImg">
+        </div>
     </div>
-  </div>
 </div>
 <script>
-  let preview=document.querySelector('.preview_img'),mask=document.querySelector('.mask'),
-    big=document.querySelector('.big')
-  //01 显示小图和大图
-  preview.onmouseover =function(){
-    mask.style.display="block"
-    big.style.display="block"
-  }
-  //02 移走取消
-  preview.onmouseout =function(){
-    mask.style.display="none"
-    big.style.display="none"
-  }
+    let preview = document.querySelector('.preview_img'), mask = document.querySelector('.mask'),
+        big = document.querySelector('.big')
+    //01 显示小图和大图
+    preview.onmouseover = function () {
+        mask.style.display = "block"
+        big.style.display = "block"
+    }
+    //02 移走取消
+    preview.onmouseout = function () {
+        mask.style.display = "none"
+        big.style.display = "none"
+    }
 
-  //03 移动黄色小盒子
-  preview.onmousemove =function(e){
-    /*
-    获取鼠标在小图的坐标
-    黄色层是300px，父盒子是400px，实际可移动只有100px
-    再让黄色层只到一半再移动，=150px
-     */
-    let x=(e.pageX-this.offsetLeft)-mask.offsetWidth/2,y=(e.pageY-this.offsetTop)-mask.offsetHeight/2
+    //03 移动黄色小盒子
+    preview.onmousemove = function (e) {
+        /*
+        获取鼠标在小图的坐标
+        黄色层是300px，父盒子是400px，实际可移动只有100px
+        再让黄色层只到一半再移动，=150px
+         */
+        let x = (e.pageX - this.offsetLeft) - mask.offsetWidth / 2,
+            y = (e.pageY - this.offsetTop) - mask.offsetHeight / 2
 
-    //防止超出盒子边界
-    let maxMask=preview.offsetWidth-mask.offsetWidth
+        //防止超出盒子边界
+        let maxMask = preview.offsetWidth - mask.offsetWidth
 
-    x=x<=0?0:x>maxMask?maxMask:x
-    y=y<=0?0:y>maxMask?maxMask:y
+        x = x <= 0 ? 0 : x > maxMask ? maxMask : x
+        y = y <= 0 ? 0 : y > maxMask ? maxMask : y
 
-    mask.style.left=x+'px'
-    mask.style.top=y+'px'
+        mask.style.left = x + 'px'
+        mask.style.top = y + 'px'
 
-    /*
-    等比放大
-    公式：遮挡层移动距离(x1)/遮挡层最大移动距离(x2)=大图的移动距离(y1)/大图的最大移动距离(y2)
-    变形：y1=x1*y2/x2
-    实际可移动距离=大图片-div=实际可移动的距离
-     */
-    const big_img=document.querySelector('.bigImg')
-    let Maxbig=big_img.offsetWidth-big.offsetWidth
-    let bigX=x*Maxbig/maxMask
-    let bigY=y*Maxbig/maxMask
-    //负数是方向操作，鼠标往右移动，大图就应往左（达成放大效果）
-    big_img.style.left =-bigX+'px'
-    big_img.style.top =-bigY+'px'
+        /*
+        等比放大
+        公式：遮挡层移动距离(x1)/遮挡层最大移动距离(x2)=大图的移动距离(y1)/大图的最大移动距离(y2)
+        变形：y1=x1*y2/x2
+        实际可移动距离=大图片-div=实际可移动的距离
+         */
+        const big_img = document.querySelector('.bigImg')
+        let Maxbig = big_img.offsetWidth - big.offsetWidth
+        let bigX = x * Maxbig / maxMask
+        let bigY = y * Maxbig / maxMask
+        //负数是方向操作，鼠标往右移动，大图就应往左（达成放大效果）
+        big_img.style.left = -bigX + 'px'
+        big_img.style.top = -bigY + 'px'
 
-  }
+    }
 
 </script>
 </body>

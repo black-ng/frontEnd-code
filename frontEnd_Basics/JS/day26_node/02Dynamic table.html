@@ -1,110 +1,111 @@
 <!DOCTYPE html>
 <html lang='en'>
 <head>
-  <meta charset='UTF-8'>
-  <title>动态表格</title>
-  <style type='text/css'>
-      table {
-          width: 500px;
-          margin: 100px auto;
-          border-collapse: collapse;
-          text-align: center;
-      }
+    <meta charset='UTF-8'>
+    <title>动态表格</title>
+    <style type='text/css'>
+        table {
+            width: 500px;
+            margin: 100px auto;
+            border-collapse: collapse;
+            text-align: center;
+        }
 
-      td, th {
-          border: 1px solid black;
-      }
+        td, th {
+            border: 1px solid black;
+        }
 
-      thead tr {
-          height: 40px;
-          background-color: #ccc;
-      }
-  </style>
+        thead tr {
+            height: 40px;
+            background-color: #ccc;
+        }
+    </style>
 </head>
 <body>
 <table>
-  <thead>
-  <tr>
-    <th>姓名</th>
-    <th>科目</th>
-    <th>成绩</th>
-    <th>操作</th>
-  </tr>
-  </thead>
-  <tbody>
-  </tbody>
+    <thead>
+    <tr>
+        <th>姓名</th>
+        <th>科目</th>
+        <th>成绩</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    </tbody>
 </table>
 <div class='alink'></div>
 <script>
-  let datas = [{
-    name: '魏璎珞',
-    subject: 'JavaScript',
-    score: 100,
-  }, {
-    name: '弘历',
-    subject: 'JavaScript',
-    score: 98,
-  }, {
-    name: '傅恒',
-    subject: 'JavaScript',
-    score: 99,
-  }, {
-    name: '明玉',
-    subject: 'JavaScript',
-    score: 88,
-  }, {
-    name: '大猪蹄子',
-    subject: 'JavaScript',
-    score: 0,
-  }]
-  for (let i in datas) {
-    let tr = document.createElement('tr')
-    for (let datasKey in datas[i]) {
-      let td = document.createElement('td')
-      td.innerHTML = datas[i][datasKey]
-      tr.append(td)
+    let datas = [{
+        name: '魏璎珞',
+        subject: 'JavaScript',
+        score: 100,
+    }, {
+        name: '弘历',
+        subject: 'JavaScript',
+        score: 98,
+    }, {
+        name: '傅恒',
+        subject: 'JavaScript',
+        score: 99,
+    }, {
+        name: '明玉',
+        subject: 'JavaScript',
+        score: 88,
+    }, {
+        name: '大猪蹄子',
+        subject: 'JavaScript',
+        score: 0,
+    }]
+    for (let i in datas) {
+        let tr = document.createElement('tr')
+        for (let datasKey in datas[i]) {
+            let td = document.createElement('td')
+            td.innerHTML = datas[i][datasKey]
+            tr.append(td)
+        }
+        let tbody = document.querySelector('tbody')
+        tbody.appendChild(tr)
+        let a = document.createElement('a')
+        a.innerHTML = '删除'
+        a.href = '#'
+        let td = document.createElement('td')
+        td.appendChild(a)
+        tr.appendChild(td)
+        a.onclick = function () {
+            tbody.removeChild(this.parentNode.parentNode)
+        }
     }
-    let tbody = document.querySelector('tbody')
-    tbody.appendChild(tr)
-    let a = document.createElement('a')
-    a.innerHTML = '删除'
-    a.href = '#'
-    let td = document.createElement('td')
-    td.appendChild(a)
-    tr.appendChild(td)
-    a.onclick = function() {
-      tbody.removeChild(this.parentNode.parentNode)
-    }
-  }
-  alink = document.querySelector('.alink')
-  function create_ele_arr() {
-    let arr = [],  start = new Date()
-    for (let i = 0; i < 100; i++) {
-      arr.push('<a href=\'#\'>百度</a>')
-    }
-    alink.innerHTML = arr.join('')
-    let end = new Date()
-    console.log(end - start)
-  }
+    alink = document.querySelector('.alink')
 
-  create_ele_arr()
-
-  function create_ele_str() {
-    let start = new Date()
-    for (let i = 0; i < 100; i++) {
-      alink.innerHTML+= '<a href=\'#\'>百度</a>'
+    function create_ele_arr() {
+        let arr = [], start = new Date()
+        for (let i = 0; i < 100; i++) {
+            arr.push('<a href=\'#\'>百度</a>')
+        }
+        alink.innerHTML = arr.join('')
+        let end = new Date()
+        console.log(end - start)
     }
-    let end = new Date()
-    console.log(end - start)
-  }
 
-  create_ele_str()
-  /*
-  三种创建方式的效率
-  innerhtml字符串拼接，效率较低
-  innerhtml往数组存，效率最快，是字符串的500倍(性能较差的机器能500倍，技能较好的也相差20-30倍)
-  createEle 创建元素，大约是数组存的1/3
-  */
+    create_ele_arr()
+
+    function create_ele_str() {
+        let start = new Date()
+        for (let i = 0; i < 100; i++) {
+            alink.innerHTML += '<a href=\'#\'>百度</a>'
+        }
+        let end = new Date()
+        console.log(end - start)
+    }
+
+    create_ele_str()
+    /*
+    三种创建方式的效率
+    innerhtml字符串拼接，效率较低
+    innerhtml往数组存，效率最快，是字符串的500倍(性能较差的机器能500倍，技能较好的也相差20-30倍)
+    createEle 创建元素，大约是数组存的1/3
+    */
 
 </script>
 </body>

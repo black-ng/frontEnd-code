@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>for</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>for</title>
 </head>
 <body>
-  <script>
+<script>
     // 1.99乘法表
-    var str="";
-    for (i=1;i<=9;i++){
-      for(j=1;j<=i;j++){
-        str+=j + "x" + i + "=" + i*j + "  ";
-        if (i==j) {
-          str+="\n";
+    var str = "";
+    for (i = 1; i <= 9; i++) {
+        for (j = 1; j <= i; j++) {
+            str += j + "x" + i + "=" + i * j + "  ";
+            if (i == j) {
+                str += "\n";
+            }
         }
-      }
     }
     console.log(str)
 
@@ -27,34 +27,35 @@
     //     break
     //   }
     // }
-    var list_demo1=[65.3,7,3,8,2,11,13,44,77.9]
-    var max=list_demo1[0]
-    for (var i=1;i<list_demo1.length;i++){
-        if (list_demo1[i]>max) {
-          max=list_demo1[i]
+    var list_demo1 = [65.3, 7, 3, 8, 2, 11, 13, 44, 77.9]
+    var max = list_demo1[0]
+    for (var i = 1; i < list_demo1.length; i++) {
+        if (list_demo1[i] > max) {
+            max = list_demo1[i]
         }
     }
-    console.log("最大数是："+max)
+    console.log("最大数是：" + max)
 
-    var arr=[65.3,7,3,8,2,11,13,44,77.9,33,1]
-    for(var i=1;i<=arr.length-1;i++){
-      for(var j=0;j<arr.length-i;j++){
-          if(arr[j]>arr[j+1]){
-              var tmp=arr[j]
-              arr[j]=arr[j+1]
-              arr[j+1]=tmp
-          }
-      }
+    var arr = [65.3, 7, 3, 8, 2, 11, 13, 44, 77.9, 33, 1]
+    for (var i = 1; i <= arr.length - 1; i++) {
+        for (var j = 0; j < arr.length - i; j++) {
+            if (arr[j] > arr[j + 1]) {
+                var tmp = arr[j]
+                arr[j] = arr[j + 1]
+                arr[j + 1] = tmp
+            }
+        }
     }
     console.log(arr)
 
-    var text_N=100
+    var text_N = 100
     fn1()
+
     function fn1() {
-      console.log(text_N)   
-      var text_N=200
+        console.log(text_N)
+        var text_N = 200
     }
 
-  </script>
+</script>
 </body>
 </html>

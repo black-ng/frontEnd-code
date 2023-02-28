@@ -1,87 +1,88 @@
 <!DOCTYPE html>
 <html lang='en'>
 <head>
-  <meta charset='UTF-8'>
-  <title>day26-03事件</title>
-  <style>
-      .father {
-          width: 300px;
-          height: 300px;
-          margin: 100px auto;
-          background-color: red;
-          text-align: center;
-          overflow: hidden;
-      }
+    <meta charset='UTF-8'>
+    <title>day26-03事件</title>
+    <style>
+        .father {
+            width: 300px;
+            height: 300px;
+            margin: 100px auto;
+            background-color: red;
+            text-align: center;
+            overflow: hidden;
+        }
 
-      .son {
-          width: 200px;
-          height: 200px;
-          margin: 50px;
-          background-color: purple;
-          color: white;
-          line-height: 200px;
-      }
-      .gif-a{
-          position: absolute;
-          top: 2px;
-      }
-  </style>
+        .son {
+            width: 200px;
+            height: 200px;
+            margin: 50px;
+            background-color: purple;
+            color: white;
+            line-height: 200px;
+        }
+
+        .gif-a {
+            position: absolute;
+            top: 2px;
+        }
+    </style>
 </head>
 <body>
-  <div class='span-a'>pp123</div>
-  <div class="father">
+<div class='span-a'>pp123</div>
+<div class="father">
     <div class="son">子盒子</div>
-  </div>
-  <ul class='de-ul'>
+</div>
+<ul class='de-ul'>
     <li>hell</li>
     <li>hell</li>
     <li>hell</li>
     <li>hell</li>
-  </ul>
-  <img src='./img/angel.gif' alt='tia' class='gif-a'>
+</ul>
+<img src='./img/angel.gif' alt='tia' class='gif-a'>
 <script>
-  //  第三个参数为是否为捕获型
-  //  捕获型和冒泡型，捕获分别为从顶到低，冒泡为低到顶
-  diva=document.querySelector('.span-a')
-  diva.addEventListener('selectstart',function(e) {
-    e.preventDefault()
-  })
-  diva.addEventListener('contextmenu',function(e) {
-    e.preventDefault()
-  })
-  diva.addEventListener('click',function(e) {
-    console.log(e.target)
-  })
+    //  第三个参数为是否为捕获型
+    //  捕获型和冒泡型，捕获分别为从顶到低，冒泡为低到顶
+    diva = document.querySelector('.span-a')
+    diva.addEventListener('selectstart', function (e) {
+        e.preventDefault()
+    })
+    diva.addEventListener('contextmenu', function (e) {
+        e.preventDefault()
+    })
+    diva.addEventListener('click', function (e) {
+        console.log(e.target)
+    })
 
-  // 02阻止事件冒泡
-  fathera=document.querySelector('.father')
-  sona=document.querySelector('.son')
-  sona.addEventListener('click',function(e){
-    alert('孩子')
-    e.stopPropagation()
-  },false)
-  fathera.addEventListener('click',function(){
-    alert('父亲')
-  },false)
-  // document.addEventListener('click',function(){
-  //   alert('文档')
-  // },false)
-  //
-  uld=document.querySelector('.de-ul')
-  uld.addEventListener('click',function(e) {
-    if (e.target.nodeName==='LI'){
-      e.target.style.backgroundColor='red'
-    }
-  })
+    // 02阻止事件冒泡
+    fathera = document.querySelector('.father')
+    sona = document.querySelector('.son')
+    sona.addEventListener('click', function (e) {
+        alert('孩子')
+        e.stopPropagation()
+    }, false)
+    fathera.addEventListener('click', function () {
+        alert('父亲')
+    }, false)
+    // document.addEventListener('click',function(){
+    //   alert('文档')
+    // },false)
+    //
+    uld = document.querySelector('.de-ul')
+    uld.addEventListener('click', function (e) {
+        if (e.target.nodeName === 'LI') {
+            e.target.style.backgroundColor = 'red'
+        }
+    })
 
-  //03 图片跟随鼠标移动
-  gifa=document.querySelector('.gif-a')
-  gifa.addEventListener('mousemove',function(e) {
-    let x=e.pageX
-    let y=e.pageY
-    gifa.style.left=x -40 +'px'
-    gifa.style.top=y -40 +'px'
-  })
+    //03 图片跟随鼠标移动
+    gifa = document.querySelector('.gif-a')
+    gifa.addEventListener('mousemove', function (e) {
+        let x = e.pageX
+        let y = e.pageY
+        gifa.style.left = x - 40 + 'px'
+        gifa.style.top = y - 40 + 'px'
+    })
 
 </script>
 </body>

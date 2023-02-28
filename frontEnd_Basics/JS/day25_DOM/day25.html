@@ -53,20 +53,20 @@
     //01 排它
     let btns = document.querySelectorAll('button');
     for (let i = 0; i < btns.length; i++) {
-        btns[i].onclick=function (){
+        btns[i].onclick = function () {
             for (let j = 0; j < btns.length; j++) {
-                btns[j].style.backgroundColor=''
+                btns[j].style.backgroundColor = ''
             }
-            this.style.backgroundColor='blue'
+            this.style.backgroundColor = 'blue'
         }
     }
 
     //02 更换背景图片
-    let fimg=document.querySelectorAll('img')
+    let fimg = document.querySelectorAll('img')
     console.log(fimg)
     for (let i = 0; i < fimg.length; i++) {
-        fimg[i].onclick=function (){
-            document.body.style.background='url('+this.src+')'
+        fimg[i].onclick = function () {
+            document.body.style.background = 'url(' + this.src + ')'
         }
     }
 

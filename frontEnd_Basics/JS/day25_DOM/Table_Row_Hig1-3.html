@@ -98,13 +98,13 @@
 
 <script>
     //01 选中表格高亮
-    let trs=document.querySelector('tbody').querySelectorAll('tr')
+    let trs = document.querySelector('tbody').querySelectorAll('tr')
     for (let i = 0; i < trs.length; i++) {
-        trs[i].onmouseover=function (){
-            this.className='bg'
+        trs[i].onmouseover = function () {
+            this.className = 'bg'
         }
-        trs[i].onmouseout=function (){
-            this.className=''
+        trs[i].onmouseout = function () {
+            this.className = ''
         }
     }
 </script>

@@ -1,53 +1,54 @@
 <!DOCTYPE html>
 <html lang='en'>
 <head>
-  <meta charset='UTF-8'>
-  <title>动画原理</title>
-  <style>
-      .hello {
-          position: absolute;
-          left: 0;
-          width: 100px;
-          height: 100px;
-          background: red;
+    <meta charset='UTF-8'>
+    <title>动画原理</title>
+    <style>
+        .hello {
+            position: absolute;
+            left: 0;
+            width: 100px;
+            height: 100px;
+            background: red;
 
-      }
-      .world {
-          position: absolute;
-          left: 0;
-          width: 100px;
-          height: 100px;
-          background: purple;
-          top: 200px;
-      }
-  </style>
+        }
+
+        .world {
+            position: absolute;
+            left: 0;
+            width: 100px;
+            height: 100px;
+            background: purple;
+            top: 200px;
+        }
+    </style>
 </head>
 <body>
 <button class='botton'>移动元素</button>
 <div class='hello'>hello</div>
 <div class='world'>word</div>
 <script type='text/javascript'>
-  let div = document.querySelector('div')
+    let div = document.querySelector('div')
 
-  const annimor = (obj,offset,speed) => {
-    clearInterval(obj.timer)
-    obj.timer=setInterval(()=>{
-      if (obj.offsetLeft>offset){
+    const annimor = (obj, offset, speed) => {
         clearInterval(obj.timer)
-      }
-      obj.style.left=obj.offsetLeft+1+'px'
-    },speed)
-  }
+        obj.timer = setInterval(() => {
+            if (obj.offsetLeft > offset) {
+                clearInterval(obj.timer)
+            }
+            obj.style.left = obj.offsetLeft + 1 + 'px'
+        }, speed)
+    }
 
-  const hello = document.querySelector('.hello')
-  const world = document.querySelector('.world')
-  const btn = document.querySelector('button')
+    const hello = document.querySelector('.hello')
+    const world = document.querySelector('.world')
+    const btn = document.querySelector('button')
 
-  annimor(hello,300,10)
+    annimor(hello, 300, 10)
 
-  btn.onclick = () =>{
-    annimor(world,500,1)
-  }
+    btn.onclick = () => {
+        annimor(world, 500, 1)
+    }
 
 </script>
 </body>

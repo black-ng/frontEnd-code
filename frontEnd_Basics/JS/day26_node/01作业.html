@@ -20,10 +20,12 @@
         table tr {
             background-color: pink;
         }
-        .btn-de{
+
+        .btn-de {
             margin-top: 40px;
         }
-        textarea{
+
+        textarea {
             margin-top: 40px;
             width: 200px;
             height: 100px;
@@ -31,10 +33,12 @@
             outline: none;
             resize: none;
         }
-        ul{
+
+        ul {
             margin-top: 50px;
         }
-        li{
+
+        li {
             width: 300px;
             padding: 5px;
             background-color: yellow;
@@ -42,19 +46,20 @@
             font-size: 14px;
             margin: 15px 0;
         }
-        a{
+
+        a {
             float: right;
         }
     </style>
 </head>
 <body>
 <div id="dv">
-    <label for="uname">请输入姓名:</label><input type="text" value="" id="uname" />
+    <label for="uname">请输入姓名:</label><input type="text" value="" id="uname"/>
     <br>
-    <label for="email"> 请输入邮箱:</label><input type="text" value="" id="email" />
+    <label for="email"> 请输入邮箱:</label><input type="text" value="" id="email"/>
 </div>
 
-<input type="button" value="添加" id="btn" />
+<input type="button" value="添加" id="btn"/>
 <table border="1" cellpadding="0" cellspacing="0" id="tb">
     <thead>
     <tr>
@@ -87,21 +92,21 @@
 
 <script>
     //01 增加表格内容
-    const uname=document.getElementById('uname')
+    const uname = document.getElementById('uname')
     console.log(uname)
-    const email=document.getElementById('email')
-    const btn=document.getElementById('btn')
-    const tbd=document.getElementById('tbd')
-    btn.onclick=function (){
-        if (uname.value===''||email.value===''){
+    const email = document.getElementById('email')
+    const btn = document.getElementById('btn')
+    const tbd = document.getElementById('tbd')
+    btn.onclick = function () {
+        if (uname.value === '' || email.value === '') {
             alert('非空')
             return
         }
-        let tbd1=document.createElement('td')
-        tbd1.innerHTML=uname.value
-        let tbd2=document.createElement('td')
-        tbd2.innerHTML=email.value
-        let tr=document.createElement('tr')
+        let tbd1 = document.createElement('td')
+        tbd1.innerHTML = uname.value
+        let tbd2 = document.createElement('td')
+        tbd2.innerHTML = email.value
+        let tr = document.createElement('tr')
         tr.appendChild(tbd1)
         tr.appendChild(tbd2)
         tbd.appendChild(tr)
@@ -126,10 +131,8 @@
     const lul = document.querySelector(".ul-liu");
 
 
-    lbtn.onclick = function()
-    {
-        if(text.value === "")
-        {
+    lbtn.onclick = function () {
+        if (text.value === "") {
             alert("输入内容为空,请重新输入")
             return
         }
@@ -139,15 +142,13 @@
         li.innerHTML = text.value + '<a href="#">删除</a>'
         lul.insertBefore(li, lul.children[0])
         //清空
-        text.value=""
+        text.value = ""
         //添加a标签的点击事件
         const as = document.querySelectorAll("a");
-        for(let i=0; i<as.length; i++)
-        {
-            as[i].onclick = function()
-            {
+        for (let i = 0; i < as.length; i++) {
+            as[i].onclick = function () {
                 //删除节点(点击元素.爹)
-                lul.removeChild( this.parentNode )
+                lul.removeChild(this.parentNode)
             }
         }
     }

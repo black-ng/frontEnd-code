@@ -3,7 +3,7 @@
 
 <head lang="en">
     <meta charset="UTF-8">
-    <title></title>
+    <title>05_回到顶部</title>
     <style>
         .slider-bar {
             position: absolute;
@@ -79,8 +79,31 @@
             goBack.style.display = 'none'
         }
     }
+
+    const annimor = (obj, offset, speed, callback) => {
+        clearInterval(obj.timer)
+        obj.timer = setInterval(() => {
+            if (window.scrollY === offset) {
+                clearInterval(obj.timer)
+                // 判断是否有传入callback
+                callback && callback()
+
+            }
+            //
+            // 回到顶部步数
+            let step = (offset - window.scrollY) / 10
+            step = step >= 0 ? Math.ceil(step) : Math.floor(step)
+
+            console.log(step)
+            console.log('现在的位置:' + window.scrollY)
+
+            window.scrollTo(0, window.scrollY + step)
+
+        }, speed)
+    }
+
     goBack.onclick = function () {
-        window.scrollTo(0, 0)
+        annimor(window, 0, 15)
     }
 
 
