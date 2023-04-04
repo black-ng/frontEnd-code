@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8'>
+  <title>01_class_list</title>
+  <style>
+      .bg {
+          background: black;
+      }
+  </style>
+</head>
+<body>
+<div class='one tow'></div>
+<button>开关</button>
+<script type='text/javascript'>
+  btn = document.querySelector('button')
+  btn.onclick = (() => {
+    //  toggle--切换类名，如果有bg类则移除，没有则添加
+    document.body.classList.toggle('bg')
+  })
+</script>
+</body>
+</html>
